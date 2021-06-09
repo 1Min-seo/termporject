@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 창</title>
+    <!-- <link rel="stylesheet" href="../public/css/main.css"> -->
+    <!-- server on -->
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h2>Welcome to MS</h3>
+                <h2>TALK</h2>
+                <p>
+                    If you visit this site for the first time,
+                    please write down your personal information.
+                </p>
+        </div>
+
+        <div class="center">
+            <!-- <img src="../public/img/github.png" alt=""> -->
+            <img src="/img/github.png" alt="">
+            <div class="write-info">
+                <form action="/auth" method="post">
+                    <p>ID</p><input type="text" name='id'class="id" required>
+                    <p>PASSWORD</p><input type="password" name='pass' class="pass" required>
+                    <input type="submit" class="button" value="로그인"></input>
+                    <p id=msg>아이디와 비밀번호를 정확히 기재해주세요</p>
+            </div>
+            <div class="click-other">
+            </div>
+        </div>
+        
+        <!-- <script src="main.js"></script> -->
+        <!-- server on -->
+        <script src="/js/main.js"></script>
+</body>
+
+</html>

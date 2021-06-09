@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>민서의 채팅 웹사이트</title>
+    <!-- <link rel="stylesheet" href="../public/css/chat.css"> -->
+    <!--server on -->
+    <link rel="stylesheet" href="/css/chat.css">
+
+    <script>
+        const nickName = document.querySelector('.nickname')
+        const chatOrder = document.querySelector('#chat-order')
+        const textInput = document.querySelector('.text-input')
+        const buttonChat = document.querySelector('button')
+
+        function sendJson(dataSource, body, func) {
+            var xhr = false;
+            if (window.ActiveXObject)
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            else if (window.XMLHttpRequest)
+                xhr = new XMLHttpRequest();
+            if (xhr) {
+                xhr.open("POST", dataSource);
+                xhr.onreadystatechange = func;
+                xr.send(body)
+            }
+        }
+
+        let currMsgCount = 0;
+        function getNewMessages() {
+            sendJson("/getNewMessages", currMsgCount.toString(), function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let data = JSON.parse(this.responseText)
+                    // alert("New messages #: " + data.length)
+                    for(let i=0; o<data.length; i++)
+                        chatOrder.value+=data[i]+"\n"
+                    currMsgCount +=data.length
+            
+                }
+            })
+        }
+
+        function sendMessage(e) {
+            // e.preventDefault();
+
+            if (textInput.value == '') //아무 것도 적지 않으면 버튼 안 눌림.
+                return
+
+            chatOrder.value += nickName.value + ":" + textInput.value + "\n"
+            textInput.value = ''
+            let data = { "name": nickName.value, "msg": textInput.value }
+
+            sendJson("/sendMessage", JSON.stringify(data), () => {
+                if (this.readyState == 4 && this.status == 200)
+                    currMsgCount = Number(this.responseText)
+                alert(currMsgCount)
+            })
+        }
+
+        window.onload = function(){
+            setInterval(getNewMessages,2000)
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <header>
+        <div>
+            <h3>Your Chat Web</h4>
+        </div>
+    </header>
+    <div class="my-name">
+        <span>작성자: </span><input type="text" class="nickname">
+    </div>
+    <div class="container">
+        <textarea id="chat-order" cols="60" rows="50"></textarea>
+        <div class="list-container">
+            <button class="show-btn">
+                Personal<br />
+                List
+            </button>
+            <span>
+                <label for="todo-input"></label>
+                <input type="text" id="todo-input">
+                <button class="ok">OK</button>
+            </span>
+            <ul id="to-do">
+                <!-- <li class="list">1.study JAVA</li>
+                <li class="list">2.study JAVA</li>
+                <li class="list">3.study JAVA</li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="bottom">
+        <input type="text" class="text-input">
+        <button onclick="sendMessage()">전송</button>
+    </div>
+    <!-- <script src="../public/js/chat.js"></script> -->
+    <!-- server on -->
+    <script src="/js/chat.js"></script>
+
+</body>
+
+</html>
