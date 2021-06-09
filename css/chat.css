@@ -1,0 +1,93 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #4867AA;
+}
+
+header h3{
+    /* border: 1px solid red; */
+    font-size: 50px;
+    color: white;
+    margin-top: 20px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.123);
+}
+
+.my-name{
+    margin-top: -20px;
+    margin-left: 210px;
+    color: white;
+    /* border: 1px solid red; */
+}
+
+.my-name input{
+    border-radius: 3px;
+    border: none;
+    height: 20px;
+}
+.container{
+    margin-top: 20px;
+}
+.bottom{
+    margin-top: 10px;
+    /* border: 1px solid red; */
+}
+.bottom input{
+    width: 360px;
+    height: 40px;
+    /* border: 1px solid red; */
+}
+
+.bottom button{
+    width: 77px;
+    height: 45px;
+    background-color: white;
+    border: none;
+    color: #4867AA;
+    cursor: pointer;
+    /* border: 1px solid red; */
+}
+
+.container .show-btn{
+    display: inline-block;
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 165px;
+    right: 600px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;
+    color: #4867AA;
+    border: none;
+    cursor: pointer;
+}
+
+.container #todo-input{
+    position: absolute;
+    top: 192px;
+    right: 410px;
+    height: 30px;
+}
+
+.container #to-do{
+    /* border: 1px solid red; */
+    position: absolute;
+    top: 245px;
+    right: 325px;
+    display: inline-block;
+    width: 300px;
+    height: 310px;
+    background-color:white;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.container .ok{
+    position: absolute;
+    top: 192px;
+    right: 360px;
+    width: 40px;
+    height: 35px;
+}
+
